@@ -31,7 +31,7 @@ class DIContainer extends BaseContainer {
 
 
 	public function __construct(){
-		parent::__construct('feed_central');
+		parent::__construct('feedcentral');
 		require_once __DIR__ . '/diconfig.php';
 	}
 

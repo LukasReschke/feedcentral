@@ -28,9 +28,9 @@ use \OCA\AppFramework\Core\API;
 
 
 // dont break owncloud when the appframework is not enabled
-if(\OCP\App::isEnabled('appframework')){
+if(\OCP\App::isEnabled('appframework') && \OCP\App::isEnabled('news')){
 
-	$api = new API('feed_central');
+	$api = new API('feedcentral');
 
 	// uncomment the next line to activate the admin interface
 	//$api->registerAdmin('admin/settings');
@@ -39,14 +39,14 @@ if(\OCP\App::isEnabled('appframework')){
 	$api->addNavigationEntry(array(
 
 		// the string under which your app will be referenced in owncloud
-		'id' => $api->getAppName('feed_central'),
+		'id' => $api->getAppName('feedcentral'),
 
 		// sorting weight for the navigation. The higher the number, the higher
 		// will it be listed in the navigation
 		'order' => 10,
 
 		// the route that will be shown on startup
-		'href' => $api->linkToRoute('feed_central_index'),
+		'href' => $api->linkToRoute('feedcentral_index'),
 
 		// the icon that will be shown in the navigation
 		// this file needs to exist in img/example.png
@@ -59,6 +59,6 @@ if(\OCP\App::isEnabled('appframework')){
 	));
 
 } else {
-	$msg = 'Can not enable the  app because the App Framework App is disabled';
-	\OCP\Util::writeLog('feed_central', $msg, \OCP\Util::ERROR);
+	$msg = 'Can not enable the app because the App Framework app or the News app is disabled';
+	\OCP\Util::writeLog('feedcentral', $msg, \OCP\Util::ERROR);
 }

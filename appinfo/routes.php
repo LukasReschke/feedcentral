@@ -31,7 +31,7 @@ use \OCA\FeedCentral\DependencyInjection\DIContainer;
 /**
  * Webinterface
  */
-$this->create('feed_central_index', '/')->get()->action(
+$this->create('feedcentral_index', '/')->get()->action(
 	function($params){
 		App::main('PageController', 'index', $params, new DIContainer());
 	}

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <info>
-	<id>feed_central</id>
+	<id>feedcentral</id>
 	<name>Feed Central</name>
 	<description>Provides a public interface that serves the News app's feeds</description>
 	<licence>AGPLv3</licence>

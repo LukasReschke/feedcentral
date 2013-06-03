@@ -25,6 +25,8 @@
 
 namespace OCA\FeedCentral\DependencyInjection;
 
+use \OCA\News\DependencyInjection\DIContainer as NewsContainer;
+
 use \OCA\FeedCentral\Controller\PageController;
 use \OCA\FeedCentral\Controller\SettingsController;
 
@@ -33,6 +35,11 @@ use \OCA\FeedCentral\Controller\SettingsController;
  */
 // use this to specify the template directory
 $this['TwigTemplateDirectory'] = __DIR__ . '/../templates';
+
+
+$this['NewsContainer'] = $this->share(function() {
+	return new NewsContainer();
+});
 
 
 /**
@@ -44,4 +51,8 @@ $this['PageController'] = $this->share(function($c){
 
 $this['SettingsController'] = $this->share(function($c){
 	return new SettingsController($c['API'], $c['Request']);
+});
+
+$this['FeedController'] = $this->share(function($c){
+	return new FeedController($c['API'], $c['Request']);
 });

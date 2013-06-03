@@ -1,4 +1,4 @@
-app_name=feed_central
+app_name=feedcentral
 build_directory=build/
 package_name=$(build_directory)$(app_name)
 

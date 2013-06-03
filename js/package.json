@@ -1,14 +1,14 @@
 {
-	"name": "feed_central",
+	"name": "feedcentral",
 	"description": "Provides a public interface that serves the News app's feeds",
 	"version": "0.0.1",
 	"private": true,
-	"homepage": "https://github.com/owncloud/feed_central",
+	"homepage": "https://github.com/owncloud/feedcentral",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:owncloud/feed_central.git"
+		"url": "git@github.com:owncloud/feedcentral.git"
 	},
-	"bugs": "https://github.com/owncloud/feed_central/issues",
+	"bugs": "https://github.com/owncloud/feedcentral/issues",
 	"dependencies": {},
 	"devDependencies": {
 		"grunt": "*",
