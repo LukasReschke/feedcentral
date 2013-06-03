@@ -1,0 +1,26 @@
+{
+	"name": "feed_central",
+	"description": "Provides a public interface that serves the News app's feeds",
+	"version": "0.0.1",
+	"private": true,
+	"homepage": "https://github.com/owncloud/feed_central",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:owncloud/feed_central.git"
+	},
+	"bugs": "https://github.com/owncloud/feed_central/issues",
+	"dependencies": {},
+	"devDependencies": {
+		"grunt": "*",
+		"grunt-cli": "*",
+		"grunt-contrib-concat": "*",
+		"grunt-contrib-jshint": "*",
+		"grunt-contrib-watch": "*",
+		"karma": "*",
+		"grunt-karma": "*",
+		"grunt-wrap": "*",
+		"phantomjs": "*",
+		"grunt-phpunit": "*"
+	},
+	"engine": "node >= 0.8"
+}
