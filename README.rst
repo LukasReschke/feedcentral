@@ -1,0 +1,15 @@
+FeedCentral app
+===============
+
+This app is a simple proof of concept for a News app plugin. This app needs a maintainer.
+
+..info :: Warning: This will allow anyone (also not logged in users) to access the starred feeds of all users
+
+
+The generated RSS feed for starred items of a user is available under::
+
+	OWNCLOUD_PATH/index.php/apps/feedcentral/USER_NAME/starred
+
+where:
+* **OWNCLOUD_PATH**: Path to your ownCloud installation
+* **USER_NAME**: Name of the user of which you want to access the starred feeds

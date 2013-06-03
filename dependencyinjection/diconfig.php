@@ -29,13 +29,12 @@ use \OCA\News\DependencyInjection\DIContainer as NewsContainer;
 
 use \OCA\FeedCentral\Controller\PageController;
 use \OCA\FeedCentral\Controller\SettingsController;
+use \OCA\FeedCentral\Controller\FeedController;
+use \OCA\FeedCentral\Utility\RSS;
 
 /**
  * Delete the following twig config to use ownClouds default templates
  */
-// use this to specify the template directory
-$this['TwigTemplateDirectory'] = __DIR__ . '/../templates';
-
 
 $this['NewsContainer'] = $this->share(function() {
 	return new NewsContainer();
@@ -54,5 +53,14 @@ $this['SettingsController'] = $this->share(function($c){
 });
 
 $this['FeedController'] = $this->share(function($c){
-	return new FeedController($c['API'], $c['Request']);
+	return new FeedController($c['API'], $c['Request'],
+		$c['NewsContainer']['ItemBusinessLayer'], $c['RSS']);
+});
+
+
+/**
+ * Utility
+ */
+$this['RSS'] = $this->share(function($c){
+	return new RSS();
 });

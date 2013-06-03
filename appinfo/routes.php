@@ -28,11 +28,8 @@ use \OCA\AppFramework\App;
 use \OCA\FeedCentral\DependencyInjection\DIContainer;
 
 
-/**
- * Webinterface
- */
-$this->create('feedcentral_index', '/')->get()->action(
+$this->create('feedcentral_starred', '/{userId}/starred')->get()->action(
 	function($params){
-		App::main('PageController', 'index', $params, new DIContainer());
+		App::main('FeedController', 'starred', $params, new DIContainer());
 	}
 );

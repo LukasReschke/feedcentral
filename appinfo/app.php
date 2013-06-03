@@ -35,8 +35,8 @@ if(\OCP\App::isEnabled('appframework') && \OCP\App::isEnabled('news')){
 	// uncomment the next line to activate the admin interface
 	//$api->registerAdmin('admin/settings');
 
-
-	$api->addNavigationEntry(array(
+	// uncomment this when you decide to add a configurable ui
+	/*$api->addNavigationEntry(array(
 
 		// the string under which your app will be referenced in owncloud
 		'id' => $api->getAppName('feedcentral'),
@@ -56,7 +56,7 @@ if(\OCP\App::isEnabled('appframework') && \OCP\App::isEnabled('news')){
 		// navigation or on the settings page of your app
 		'name' => $api->getTrans()->t('Feed Central')
 
-	));
+	));*/
 
 } else {
 	$msg = 'Can not enable the app because the App Framework app or the News app is disabled';
