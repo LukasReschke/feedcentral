@@ -3,10 +3,10 @@ FeedCentral app
 
 Right now This app is a simple proof of concept for a News app plugin.
 
-Maintainer: psych0d0g
+Maintainer: * `Lukas W. <https://github.com/psych0d0g>`_ 
 
 
-__info :: Warning: Currently This will allow anyone (also not logged in users) to access all feeds of every user__
+**info :: Warning: Curriently This will allow anyone (also not logged in users) to access all feeds of every user**
 
 
 The generated RSS feed for starred items of a user is available under::
