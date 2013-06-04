@@ -33,3 +33,9 @@ $this->create('feedcentral_starred', '/{userId}/starred')->get()->action(
 		App::main('FeedController', 'starred', $params, new DIContainer());
 	}
 );
+
+$this->create('feedcentral_all', '/{userId}/all')->get()->action(
+        function($params){
+                App::main('FeedController', 'all', $params, new DIContainer());
+        }
+);

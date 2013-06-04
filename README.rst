@@ -10,6 +10,10 @@ The generated RSS feed for starred items of a user is available under::
 
 	OWNCLOUD_PATH/index.php/apps/feedcentral/USER_NAME/starred
 
+And the generated RSS feed for all items of all feeds of a user is available under::
+
+        OWNCLOUD_PATH/index.php/apps/feedcentral/USER_NAME/all
+
 where:
 * **OWNCLOUD_PATH**: Path to your ownCloud installation
 * **USER_NAME**: Name of the user of which you want to access the starred feeds
