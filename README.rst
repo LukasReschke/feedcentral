@@ -1,9 +1,12 @@
 FeedCentral app
 ===============
 
-This app is a simple proof of concept for a News app plugin. This app needs a maintainer.
+Right now This app is a simple proof of concept for a News app plugin.
 
-..info :: Warning: This will allow anyone (also not logged in users) to access the starred feeds of all users
+Maintainer: psych0d0g
+
+
+__info :: Warning: Currently This will allow anyone (also not logged in users) to access all feeds of every user__
 
 
 The generated RSS feed for starred items of a user is available under::
