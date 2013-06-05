@@ -4,7 +4,7 @@
 	<name>Feed Central</name>
 	<description>Provides a public interface that serves the News app's feeds</description>
 	<licence>AGPLv3</licence>
-	<author>Bernhard Posselt</author>
-	<version>0.001</version>
+	<author>Bernhard Posselt, Lukas Wingerberg</author>
+	<version>0.002</version>
 	<require>5.0.0</require>
 </info>

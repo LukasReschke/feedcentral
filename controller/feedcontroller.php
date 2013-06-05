@@ -74,5 +74,30 @@ class FeedController extends Controller {
 		return new TextResponse($rss, 'xml');
 	}
 
+       /**
+         * @IsAdminExemption
+         * @IsSubAdminExemption
+         * @IsLoggedInExemption
+         * @CSRFExemption
+         */
+        public function all() {
+                $userId = $this->params('userId');
+
+                $items = $this->itemBusinessLayer->findAll(
+                       0, FeedType::SUBSCRIPTIONS , 100, 0, false,  $userId               
+		);
+
+                $title = 'ownCloud News Feed';
+                $desc = 'all items of ' . $userId;
+                $req = $this->request;
+                $https = isset($req->server['HTTPS']) ? 'https' : 'http';
+                $link = $https . '://' .
+                        $req->server['SERVER_NAME'] .
+                        $req->server['REQUEST_URI'];
+
+                $rss = $this->rss->generateRSS($items, $title, $desc, $link);
+
+                return new TextResponse($rss, 'xml');
+        }
 
 }
