@@ -53,6 +53,7 @@ class FeedController extends Controller {
 	 * @IsSubAdminExemption
 	 * @IsLoggedInExemption
 	 * @CSRFExemption
+	 * @API
 	 */
 	public function starred() {
 		$userId = $this->params('userId');
@@ -79,6 +80,7 @@ class FeedController extends Controller {
          * @IsSubAdminExemption
          * @IsLoggedInExemption
          * @CSRFExemption
+         * @API
          */
         public function all() {
                 $userId = $this->params('userId');
