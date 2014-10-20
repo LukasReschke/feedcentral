@@ -24,9 +24,21 @@
 
 namespace OCA\FeedCentral\Utility;
 
+/**
+ * Class RSS
+ *
+ * @package OCA\FeedCentral\Utility
+ */
 class RSS {
 
 
+	/**
+	 * @param array $items
+	 * @param $title
+	 * @param $description
+	 * @param $link
+	 * @return string
+	 */
 	public function generateRSS(array $items, $title, $description, $link) {
 
 		$document = new \DOMDocument('1.0', 'UTF-8');
@@ -56,6 +68,11 @@ class RSS {
 	}
 
 
+	/**
+	 * @param $document
+	 * @param $channel
+	 * @param $items
+	 */
 	private function createItems($document, $channel, $items) {
 		foreach ($items as $item) {
 			$itemElement = $document->createElement('item');

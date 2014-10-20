@@ -21,21 +21,11 @@
  *
  */
 
-
 namespace OCA\FeedCentral;
 
-use \OCA\AppFramework\App;
-use \OCA\FeedCentral\DependencyInjection\DIContainer;
+$application = new Application();
 
-
-$this->create('feedcentral_starred', '/{userId}/starred')->get()->action(
-	function($params){
-		App::main('FeedController', 'starred', $params, new DIContainer());
-	}
-);
-
-$this->create('feedcentral_all', '/{userId}/all')->get()->action(
-        function($params){
-                App::main('FeedController', 'all', $params, new DIContainer());
-        }
-);
+$application->registerRoutes($this, array('routes' => array(
+	array('name' => 'Feed#All', 'url' => '/{userId}/all', 'verb' => 'GET'),
+	array('name' => 'Feed#Starred', 'url' => '/{userId}/starred', 'verb' => 'GET'),
+)));

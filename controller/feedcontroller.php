@@ -21,83 +21,78 @@
  *
  */
 
-
 namespace OCA\FeedCentral\Controller;
 
-use \OCA\AppFramework\Controller\Controller;
-use \OCA\AppFramework\Core\API;
-use \OCA\AppFramework\Http\Request;
-use \OCA\AppFramework\Http\TextResponse;
-
-use \OCA\News\BusinessLayer\ItemBusinessLayer;
 use \OCA\News\Db\FeedType;
 
 use \OCA\FeedCentral\Utility\RSS;
+use OCA\News\Http\TextResponse;
+use OCA\News\Service\ItemService;
+use \OCP\AppFramework\Controller;
+use OCP\IRequest;
 
+/**
+ * Class FeedController
+ *
+ * @package OCA\FeedCentral\Controller
+ */
 class FeedController extends Controller {
 
-	private $itemBusinessLayer;
+	/** @var ItemService */
+	private $itemService;
+	/** @var RSS */
 	private $rss;
 
-	public function __construct(API $api, Request $request,
-	                            ItemBusinessLayer $itemBusinessLayer,
-	                            RSS $rss){
-		parent::__construct($api, $request);
-		$this->itemBusinessLayer = $itemBusinessLayer;
+	/**
+	 * @param string $appName
+	 * @param IRequest $request
+	 * @param ItemService $itemService
+	 * @param RSS $rss
+	 */
+	public function __construct($appName,
+								IRequest $request,
+								ItemService $itemService,
+								RSS $rss){
+		parent::__construct($appName, $request);
+		$this->itemService = $itemService;
 		$this->rss = $rss;
 	}
 
 
 	/**
-	 * @IsAdminExemption
-	 * @IsSubAdminExemption
-	 * @IsLoggedInExemption
-	 * @CSRFExemption
+	 * @param $userId
+	 * @PublicPage
+	 * @NoCSRFRequired
+	 * @return TextResponse
 	 */
-	public function starred() {
-		$userId = $this->params('userId');
-
-		$items = $this->itemBusinessLayer->findAll(
-			0, FeedType::STARRED, 100, 0, true,	$userId
-		);
+	public function starred($userId) {
+		$items = $this->itemService->findAll(0, FeedType::STARRED, 100, 0, true, false, $userId);
 
 		$title = 'ownCloud News Feed';
 		$desc = 'starred items of ' . $userId;
-		$req = $this->request;
-		$https = isset($req->server['HTTPS']) ? 'https' : 'http';
-		$link = $https . '://' .
-			$req->server['SERVER_NAME'] .
-			$req->server['REQUEST_URI'];
+		$link = \OC_Request::serverProtocol() . '://' . \OC_Request::serverHost() . \OC_Request::requestUri();
 
 		$rss = $this->rss->generateRSS($items, $title, $desc, $link);
 
 		return new TextResponse($rss, 'xml');
 	}
 
-       /**
-         * @IsAdminExemption
-         * @IsSubAdminExemption
-         * @IsLoggedInExemption
-         * @CSRFExemption
-         */
-        public function all() {
-                $userId = $this->params('userId');
+	/**
+	 * @param $userId
+	 * @PublicPage
+	 * @NoCSRFRequired
+	 * @return TextResponse
+	 */
+	public function all($userId) {
+		$items = $this->itemService->findAll(0, FeedType::SUBSCRIPTIONS, 100, 0, true, false, $userId);
 
-                $items = $this->itemBusinessLayer->findAll(
-                       0, FeedType::SUBSCRIPTIONS , 100, 0, false,  $userId               
-		);
+		$title = 'ownCloud News Feed';
+		$desc = 'all items of ' . $userId;
+		$link = \OC_Request::serverProtocol() . '://' . \OC_Request::serverHost() . \OC_Request::requestUri();
 
-                $title = 'ownCloud News Feed';
-                $desc = 'all items of ' . $userId;
-                $req = $this->request;
-                $https = isset($req->server['HTTPS']) ? 'https' : 'http';
-                $link = $https . '://' .
-                        $req->server['SERVER_NAME'] .
-                        $req->server['REQUEST_URI'];
+		$rss = $this->rss->generateRSS($items, $title, $desc, $link);
 
-                $rss = $this->rss->generateRSS($items, $title, $desc, $link);
-
-                return new TextResponse($rss, 'xml');
-        }
+		return new TextResponse($rss, 'xml');
+	}
 
 }
