@@ -26,6 +26,6 @@ namespace OCA\FeedCentral;
 $application = new Application();
 
 $application->registerRoutes($this, array('routes' => array(
-	array('name' => 'Feed#All', 'url' => '/{userId}/all', 'verb' => 'GET'),
-	array('name' => 'Feed#Starred', 'url' => '/{userId}/starred', 'verb' => 'GET'),
+	array('name' => 'feed#all', 'url' => '/{userId}/all', 'verb' => 'GET'),
+	array('name' => 'feed#starred', 'url' => '/{userId}/starred', 'verb' => 'GET'),
 )));
