@@ -70,9 +70,8 @@ class FeedController extends Controller {
 
 		$title = 'ownCloud News Feed';
 		$desc = 'starred items of ' . $userId;
-		$link = \OC_Request::serverProtocol() . '://' . \OC_Request::serverHost() . \OC_Request::requestUri();
 
-		$rss = $this->rss->generateRSS($items, $title, $desc, $link);
+		$rss = $this->rss->generateRSS($items, $title, $desc, $this->getCurrentURL());
 
 		return new TextResponse($rss, 'xml');
 	}
@@ -88,11 +87,18 @@ class FeedController extends Controller {
 
 		$title = 'ownCloud News Feed';
 		$desc = 'all items of ' . $userId;
-		$link = \OC_Request::serverProtocol() . '://' . \OC_Request::serverHost() . \OC_Request::requestUri();
 
-		$rss = $this->rss->generateRSS($items, $title, $desc, $link);
+		$rss = $this->rss->generateRSS($items, $title, $desc, $this->getCurrentURL());
 
 		return new TextResponse($rss, 'xml');
 	}
 
+	/**
+	 * Get the current URL
+	 * @return string
+	 */
+	private function getCurrentURL() {
+		$protocol = stripos($this->request->server['SERVER_PROTOCOL'],'https') === true ? 'https' : 'http';
+		return $protocol . '://' . $this->request->server['SERVER_NAME'] .  $this->request->server['REQUEST_URI'];
+	}
 }
